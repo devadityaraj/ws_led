@@ -1,1 +1,401 @@
-Coming soon
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ESP Temp Monitor</title>
+  <link rel="shortcut icon" type="image/x-icon" href="favicon1.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <title>Aura BG</title>
+  <style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        margin: auto;
+        background-color: #000000;
+      }
+      
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      h1 {
+        color: white;
+        margin-bottom: 20px;
+      }
+      
+      #checkbox1, #checkbox2, #checkbox3, #checkbox4, #checkbox5, #checkbox6, #checkbox7, #checkbox8, #checkbox9, #checkbox10, #checkbox11 {
+        display: none;
+      }
+      
+      .switch {
+        position: relative;
+        width: 70px;
+        height: 70px;
+        background-color: rgb(99, 99, 99);
+        border-radius: 50%;
+        z-index: 1;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid rgb(126, 126, 126);
+        box-shadow: 0px 0px 3px rgb(2, 2, 2) inset;
+        margin-bottom: 20px;
+      }
+      
+      .switch svg {
+        width: 1.2em;
+      }
+      
+      .switch svg path {
+        fill: rgb(48, 48, 48);
+      }
+      
+      #checkbox1:checked + .switch,
+      #checkbox2:checked + .switch,
+      #checkbox3:checked + .switch,
+      #checkbox4:checked + .switch,
+      #checkbox5:checked + .switch,
+      #checkbox6:checked + .switch,
+      #checkbox7:checked + .switch,
+      #checkbox8:checked + .switch,
+      #checkbox9:checked + .switch,
+      #checkbox10:checked + .switch,
+      #checkbox11:checked + .switch {
+        box-shadow: 0px 0px 1px rgb(151, 243, 255) inset,
+          0px 0px 2px rgb(151, 243, 255) inset, 0px 0px 10px rgb(151, 243, 255) inset,
+          0px 0px 40px rgb(151, 243, 255), 0px 0px 100px rgb(151, 243, 255),
+          0px 0px 5px rgb(151, 243, 255);
+        border: 2px solid rgb(255, 255, 255);
+        background-color: rgb(146, 180, 184);
+      }
+      
+      #checkbox1:checked + .switch svg,
+      #checkbox2:checked + .switch svg,
+      #checkbox3:checked + .switch svg,
+      #checkbox4:checked + .switch svg,
+      #checkbox5:checked + .switch svg,
+      #checkbox6:checked + .switch svg,
+      #checkbox7:checked + .switch svg,
+      #checkbox8:checked + .switch svg,
+      #checkbox9:checked + .switch svg,
+      #checkbox10:checked + .switch svg,
+      #checkbox11:checked + .switch svg {
+        filter: drop-shadow(0px 0px 5px rgb(151, 243, 255));
+      }
+      
+      #checkbox1:checked + .switch svg path,
+      #checkbox2:checked + .switch svg path,
+      #checkbox3:checked + .switch svg path,
+      #checkbox4:checked + .switch svg path,
+      #checkbox5:checked + .switch svg path,
+      #checkbox6:checked + .switch svg path,
+      #checkbox7:checked + .switch svg path,
+      #checkbox8:checked + .switch svg path,
+      #checkbox9:checked + .switch svg path,
+      #checkbox10:checked + .switch svg path,
+      #checkbox11:checked + .switch svg path {
+        fill: rgb(255, 255, 255);
+      }
+      
+      #colorPicker {
+        background-color: none;
+        outline: none;
+        border: none;
+        height: 40px;
+        width: 60px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+      
+      .buttons-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+      
+      .buttons-row {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+      
+      .buttons-row:nth-child(1) {
+        margin-top: 20px;
+      }
+      
+      .buttons-row:nth-child(3) {
+        margin-bottom: 40px;
+      }
+       
+  </style>
+
+</head>
+<body>
+    <div class = "container">
+  <h1>LED3</h1>
+  <div>
+    <input id="checkbox1" type="checkbox" onclick="toggleValue('Value1')" />
+    <label class="switch" for="checkbox1">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="slider">
+        <path
+          d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z"
+        ></path>
+      </svg>
+    </label>
+  </div>
+
+  <div>
+    <input id="checkbox2" type="checkbox" onclick="toggleValue('Value2')"/>
+    <label class="switch" for="checkbox2">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="slider">
+        <path
+          d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z"
+        ></path>
+      </svg>
+    </label>
+  </div>
+
+  <div>
+    <input id="checkbox3" type="checkbox" onclick="toggleValue('Value3')" />
+    <label class="switch" for="checkbox3">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="slider">
+        <path
+          d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z"
+        ></path>
+      </svg>
+    </label>
+  </div>
+
+
+<div>
+
+    <input id="checkbox4" type="checkbox" onclick="toggleValue('Value4')" />
+    <label class="switch" for="checkbox4">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="slider">
+        <path
+          d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z"
+        ></path>
+      </svg>
+    </label>
+  </div>
+
+<div>
+
+    <input id="checkbox5" type="checkbox" onclick="toggleValue('Value5')" />
+    <label class="switch" for="checkbox5">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="slider">
+        <path
+          d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z"
+        ></path>
+      </svg>
+    </label>
+  </div>
+
+<div>
+
+    <input id="checkbox6" type="checkbox" onclick="toggleValue('Value6')" />
+    <label class="switch" for="checkbox6">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="slider">
+        <path
+          d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z"
+        ></path>
+      </svg>
+    </label>
+  </div>
+
+<div>
+
+    <input id="checkbox7" type="checkbox" onclick="toggleValue('Value7')" />
+    <label class="switch" for="checkbox7">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="slider">
+        <path
+          d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z"
+        ></path>
+      </svg>
+    </label>
+  </div>
+
+<div>
+
+    <input id="checkbox8" type="checkbox" onclick="toggleValue('Value8')" />
+    <label class="switch" for="checkbox8">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="slider">
+        <path
+          d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z"
+        ></path>
+      </svg>
+    </label>
+  </div>
+
+<div>
+
+    <input id="checkbox9" type="checkbox" onclick="toggleValue('Value9')" />
+    <label class="switch" for="checkbox9">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="slider">
+        <path
+          d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z"
+        ></path>
+      </svg>
+    </label>
+  </div>
+
+<div>
+
+    <input id="checkbox10" type="checkbox" onclick="toggleValue('Value10')" />
+    <label class="switch" for="checkbox10">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="slider">
+        <path
+          d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z"
+        ></path>
+      </svg>
+    </label>
+  </div>
+
+<div>
+
+    <input id="checkbox11" type="checkbox" onclick="toggleValue('Value11')" />
+    <label class="switch" for="checkbox11">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="slider">
+        <path
+          d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z"
+        ></path>
+      </svg>
+    </label>
+  </div>
+
+
+<div class="color">
+    Color Picker: <input type="color" 
+        id="colorPicker" value="#6a5acd">
+</div>
+
+</div>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.8.0/firebase-database-compat.js"></script>
+
+  <script>
+ 
+const firebaseConfig = {
+  apiKey: "AIzaSyCZTx5qW355GSRTDeprdvP-a9Akzy79rwI",
+  authDomain: "esp-74hc959n-3led-control.firebaseapp.com",
+  databaseURL: "https://esp-74hc959n-3led-control-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "esp-74hc959n-3led-control",
+  storageBucket: "esp-74hc959n-3led-control.appspot.com",
+  messagingSenderId: "741821347969",
+  appId: "1:741821347969:web:8744dd9e44bc89550d3580"
+  };
+
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+    
+ // '}' is removed from here.....
+    
+function toggleValue(key) {
+      const ref = database.ref(key);
+      ref.once('value').then((snapshot) => {
+        const currentValue = snapshot.val();
+        const newValue = currentValue === 1 ? 0 : 1;
+        ref.set(newValue);
+      });
+    }
+
+    database.ref('Value3').on('value', (snapshot) => {
+            const value = snapshot.val();
+            const checkbox = document.getElementById('checkbox3');
+            checkbox.checked = value === 1;
+        });
+    
+        database.ref('Value2').on('value', (snapshot) => {
+            const value = snapshot.val();
+            const checkbox = document.getElementById('checkbox2');
+            checkbox.checked = value === 1;
+        });
+
+        database.ref('Value1').on('value', (snapshot) => {
+            const value = snapshot.val();
+            const checkbox = document.getElementById('checkbox1');
+            checkbox.checked = value === 1;
+        });
+
+        database.ref('Value4').on('value', (snapshot) => {
+            const value = snapshot.val();
+            const checkbox = document.getElementById('checkbox4');
+            checkbox.checked = value === 1;
+        });
+
+        database.ref('Value5').on('value', (snapshot) => {
+            const value = snapshot.val();
+            const checkbox = document.getElementById('checkbox5');
+            checkbox.checked = value === 1;
+        });
+
+        database.ref('Value6').on('value', (snapshot) => {
+            const value = snapshot.val();
+            const checkbox = document.getElementById('checkbox6');
+            checkbox.checked = value === 1;
+        });
+
+        database.ref('Value7').on('value', (snapshot) => {
+            const value = snapshot.val();
+            const checkbox = document.getElementById('checkbox7');
+            checkbox.checked = value === 1;
+        });
+
+        database.ref('Value8').on('value', (snapshot) => {
+            const value = snapshot.val();
+            const checkbox = document.getElementById('checkbox8');
+            checkbox.checked = value === 1;
+        });
+
+        database.ref('Value9').on('value', (snapshot) => {
+            const value = snapshot.val();
+            const checkbox = document.getElementById('checkbox9');
+            checkbox.checked = value === 1;
+        });
+
+        database.ref('Value10').on('value', (snapshot) => {
+            const value = snapshot.val();
+            const checkbox = document.getElementById('checkbox10');
+            checkbox.checked = value === 1;
+        });
+
+        database.ref('Value11').on('value', (snapshot) => {
+            const value = snapshot.val();
+            const checkbox = document.getElementById('checkbox11');
+            checkbox.checked = value === 1;
+        });
+
+  const colorPicker = document.getElementById('colorPicker');
+
+  colorPicker.addEventListener('input', (event) => {
+    const colorValue = event.target.value;
+    updateColorInFirebase(colorValue);
+  });
+
+  function updateColorInFirebase(colorValue) {
+    const ref = database.ref('ledColor'); 
+    ref.set(colorValue); 
+  }
+
+  database.ref('ledColor').on('value', (snapshot) => {
+    const colorValue = snapshot.val();
+    if (colorValue) {
+      colorPicker.value = colorValue;  
+    }
+  });
+
+
+  </script>
+
+</body>
+</html>
